@@ -5,7 +5,7 @@ Circle::Circle(sf::Color color, float radius):Shape(color){
 	circle = sf::CircleShape(radius);
 	circle.setFillColor(sf::Color::Black);
 	circle.setOutlineColor(color);
-	circle.setOutlineThickness(-1 * thickness);
+	circle.setOutlineThickness(static_cast<float>(-1 * thickness));
 }
 
 void Circle::setPosition(float x, float y) {

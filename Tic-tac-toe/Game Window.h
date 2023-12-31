@@ -20,6 +20,7 @@ private:
 	sf::Text bottomText;
 	sf::TcpSocket* socket;
 	sf::Packet packet;
+	void endGame();
 public:
 	GameWindow(pieceTypes player, sf::TcpSocket& socket);
 	void runGame();

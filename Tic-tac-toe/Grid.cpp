@@ -70,6 +70,7 @@ void Grid::setPiece(pieceTypes piece, int position) {
 	}
 }
 
+// update grid with other player's move
 void Grid::moveOtherPlayerPiece(pieceTypes player, int previousPosition, int newPosition) {
 	if (player == o) {
 		if (numX == 3)

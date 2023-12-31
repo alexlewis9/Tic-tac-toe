@@ -10,10 +10,14 @@ pieceTypes Game::getPieceType(int position) const {
 	return grid.getPieceType(position);
 }
 
+// update grid with other player's move
 void Game::moveOtherPlayerPiece(pieceTypes player, int previousPosition, int newPosition) {
 	grid.moveOtherPlayerPiece(player, previousPosition, newPosition);
 }
 
+// if less than three pieces on the board, place piece, return 0. can't place pieve in occupied space
+// if 3 pieces on the board, remove piece, return 1. can only remove own piece
+// if invalid move return 2
 int Game::makeMove(pieceTypes player, int position) {
 	if (player == x) {
 		if (grid.getNumX() < 3 && grid.getPieceType(position) == p) {
@@ -39,6 +43,7 @@ int Game::makeMove(pieceTypes player, int position) {
 	return 2;
 }
 
+// check all possible rows. if row, draw line through row. return piece that has row. otherwise, return p.
 pieceTypes Game::checkForRow() {
 	sf::RectangleShape line(sf::Vector2f(GRID_SIZE, 2 * LINE_WIDTH));
 	if (grid.getPieceType(0) != p && grid.getPieceType(0) == grid.getPieceType(1) && grid.getPieceType(1) == grid.getPieceType(2)) {
@@ -72,13 +77,13 @@ pieceTypes Game::checkForRow() {
 		grid.addLine(line);
 		return grid.getPieceType(2);
 	} else if (grid.getPieceType(0) != p && grid.getPieceType(0) == grid.getPieceType(4) && grid.getPieceType(4) == grid.getPieceType(8)) {
-		sf::RectangleShape line(sf::Vector2f((GRID_SIZE - (GRID_SIZE / 3 - PIECE_SIZE) / 2) * sqrt(2), 2 * LINE_WIDTH));
+		sf::RectangleShape line(sf::Vector2f(static_cast<float>((GRID_SIZE - (GRID_SIZE / 3 - PIECE_SIZE) / 2) * sqrt(2)), 2 * LINE_WIDTH));
 		line.rotate(45);
 		line.setPosition(static_cast<float>(GRID_X + (GRID_SIZE / 3 - PIECE_SIZE) / 2), static_cast<float>(GRID_Y + (GRID_SIZE / 3 - PIECE_SIZE) / 2));
 		grid.addLine(line);
 		return grid.getPieceType(0);
 	} else if (grid.getPieceType(2) != p && grid.getPieceType(2) == grid.getPieceType(4) && grid.getPieceType(4) == grid.getPieceType(6)) {
-		sf::RectangleShape line(sf::Vector2f((GRID_SIZE - (GRID_SIZE / 3 - PIECE_SIZE) / 2) * sqrt(2), 2 * LINE_WIDTH));
+		sf::RectangleShape line(sf::Vector2f(static_cast<float>((GRID_SIZE - (GRID_SIZE / 3 - PIECE_SIZE) / 2) * sqrt(2)), 2 * LINE_WIDTH));
 		line.rotate(-45);
 		line.setPosition(static_cast<float>(GRID_X + (GRID_SIZE / 3 - PIECE_SIZE) / 2), static_cast<float>(GRID_Y + (GRID_SIZE / 3 - PIECE_SIZE) / 2) + (GRID_SIZE - (GRID_SIZE / 3 - PIECE_SIZE) / 2));
 		grid.addLine(line);
