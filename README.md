@@ -1,4 +1,4 @@
-<h2>Multi-computer tic-tac-toe (moveable) game using SFML1</h2>
+<h2>Multi-computer tic-tac-toe (moveable) game using SFML</h2>
 
 Rules of moveable tic-tac-toe:
 <ul>
